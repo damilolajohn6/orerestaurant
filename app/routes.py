@@ -88,3 +88,12 @@ def get_order(id):
     if not is_staff() and order.customer_id != get_jwt_identity():
         return jsonify({"msg": "You do not have the permission to access this resource"}), 403
     return jsonify(order.to_dict())
+
+
+@bp.route('/orders/placed', methods=['GET'])
+@jwt_required()
+def get_orders():
+    if current_user.role != 'staff':
+        return jsonify({"message": "You do not have the permission to access this resource."}), 403
+    orders = Order.query.all()
+    return jsonify([order.to_dict() for order in orders])
