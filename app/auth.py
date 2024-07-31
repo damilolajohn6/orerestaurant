@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token, jwt_required
+from flask_jwt_extended import create_access_token
 from .models import db, User
 
 auth_bp = Blueprint('auth', __name__)
@@ -25,9 +25,3 @@ def login():
         return jsonify(access_token=access_token)
     return jsonify({"msg": "Invalid credentials"}), 401
 
-
-@auth_bp.route('/logout', methods=['POST'])
-@jwt_required()
-def logout():
-    logout_user()
-    return jsonify({"message": "Logged out successfully!"})
