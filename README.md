@@ -1,7 +1,3 @@
-Sure! Here is a sample `README.md` file for your OreRestaurant project:
-
----
-
 # OreRestaurant
 
 OreRestaurant is a backend system built with Flask and SQLite to manage restaurant operations, including user authentication, menu management, and order processing. This project provides RESTful API endpoints for different user actions.
