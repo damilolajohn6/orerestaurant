@@ -4,10 +4,12 @@ from .models import db, User, Menu, Order
 
 bp = Blueprint('routes', __name__)
 
+
 def is_staff():
     user_id = get_jwt_identity()
     user = User.query.get(user_id)
     return user.role == 'staff'
+
 
 @bp.route('/users', methods=['GET'])
 @jwt_required()
@@ -17,6 +19,7 @@ def get_users():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users])
 
+
 @bp.route('/users/<int:id>', methods=['GET'])
 @jwt_required()
 def get_user(id):
@@ -25,12 +28,14 @@ def get_user(id):
     user = User.query.get_or_404(id)
     return jsonify(user.to_dict())
 
+
 @bp.route('/profile', methods=['GET'])
 @jwt_required()
 def get_profile():
     user_id = get_jwt_identity()
     user = User.query.get_or_404(user_id)
     return jsonify(user.to_dict())
+
 
 @bp.route('/orders', methods=['POST'])
 @jwt_required()
@@ -42,6 +47,7 @@ def place_order():
     db.session.commit()
     return jsonify({"msg": "Order placed"}), 201
 
+
 @bp.route('/orders', methods=['GET'])
 @jwt_required()
 def get_orders():
@@ -49,6 +55,7 @@ def get_orders():
         return jsonify({"msg": "You do not have the permission to access this resource"}), 403
     orders = Order.query.all()
     return jsonify([order.to_dict() for order in orders])
+
 
 @bp.route('/orders/<int:id>', methods=['GET'])
 @jwt_required()
