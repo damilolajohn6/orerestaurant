@@ -25,8 +25,8 @@ OreRestaurant is a backend system built with Flask and SQLite to manage restaura
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/OreRestaurant.git
-   cd OreRestaurant
+   git clone https://github.com/damilolajohn6/orerestaurant.git
+   cd orerestaurant
    ```
 
 2. **Create a virtual environment:**
